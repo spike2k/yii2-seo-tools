@@ -22,7 +22,7 @@ class Redirect extends ErrorHandler
     public function handleException($exception)
     {
         $redirectModel = SeoRedirects::find()
-            ->where(['old_url' => Yii::$app->request->url])
+            ->where(['old_url' => str_replace(Yii::$app->request->baseUrl,"",Yii::$app->request->url)])
             ->asArray()
             ->one();
 
